@@ -54,7 +54,7 @@
     li{
         list-style:none;
         display:flex;
-        background: rgba( 95, 158, 160, 0.75 );
+        background:rgba( 95, 158, 160, 0.85);
         box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
         backdrop-filter: blur( 4.0px );
         -webkit-backdrop-filter: blur( 4.0px );
@@ -116,6 +116,9 @@
         margin-top:0;
         font-size:1.8rem;
     }
+    li.checked{
+        background-color:rgba(95, 158, 160, 0.5);
+    }
 </style>
 </head>
 <body>
@@ -123,32 +126,32 @@
     <div id="list">
         <input id="filter-bar" type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for an item...">
         <ul>
-            <li>
+            <li id="bread">
                 <p class="tic"><i class="far fa-circle"></i></p>
                 <div class="labels">
-                    <label>Bread</label>
-                    <label>0.78 EUR</label>
+                    <label class="item">Bread</label>
+                    <label class ="price">0.78 EUR</label>
                 </div>
             </li>
-            <li>
+            <li id="milk">
                 <p class="tic"><i class="fas fa-check-circle"></i></p>
                 <div class="labels">
-                    <label>Milk</label>
-                    <label>0.65 EUR</label>
+                    <label class="item">Milk</label>
+                    <label class ="price">0.65 EUR</label>
                 </div>
             </li>
-            <li>
+            <li id="peaches">
                 <p class="tic"><i class="far fa-circle"></i></p>
                 <div class="labels"> 
-                    <label>Peaches</label>
-                    <label>3.20 EUR</label>
+                    <label class="item">Peaches</label>
+                    <label class ="price">3.20 EUR</label>
                 </div>
             </li>
-            <li>
+            <li id="apples">
                 <p class="tic"><i class="far fa-circle"></i></p>
                 <div class="labels">
-                    <label>Apples</label>
-                    <label>2.30 EUR</label>
+                    <label class="item">Apples</label>
+                    <label class ="price">2.30 EUR</label>
                 </div>
             </li>
         </ul>
@@ -158,11 +161,13 @@
             </div>
             <div id="blank"></div>
             <div id="total">
-                <p>2.30 <small>EUR</small></p>
+                <p id="totalNum">2.30 <small> EUR</small></p>
                 <p>Total</p>
             </div>
         </div>
     </div>
-    
+    <script>
+
+    </script>
 </body>
 </html>
