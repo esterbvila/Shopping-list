@@ -1,5 +1,5 @@
 //· 1 ITEM CLICKED:
-//* 1.1 CHANGE BG COLOR & 1.2 TIC ICON
+//* 1.1 CHANGE BG COLOR & 1.2 ITEM STATUS & 1.3 MOVE ITEM UNDER LIST
 
 var shoppingList = document.querySelector('ol');
 shoppingList.addEventListener('click', function(ev) {
@@ -8,16 +8,19 @@ shoppingList.addEventListener('click', function(ev) {
 
     var checked = ev.target.firstElementChild.innerHTML = '<i class="fas fa-check-circle"></i>';
     checked
+
+    document.querySelector('ol').appendChild(ev.target)
+
         if(ev.target.classList.contains('checked')==false){
             var unChecked = ev.target.firstElementChild.innerHTML = '<i class="far fa-circle"></i>';
             unChecked
-        
+
+            document.querySelector('ol').prepend(ev.target)
+
         }      
     }
 });
 
-
-//* 1.3 UNDER LIST
 //* 1.4 TOTAL INCREASES
 
 //* 1.5 RESET BUTTON APPEARS
