@@ -53,8 +53,9 @@ li{
     margin: 1% 0;
 }
 li.checked{
-    background-color: rgba(95, 158, 160, 0.5);
+    background: rgba(5, 157, 160, 0.5);
 }
+
 p.itemStatus{
     align-self: center;
     margin-right: 7%;
@@ -79,7 +80,8 @@ div.itemLabels > label.priceItem{
     display: flex;
 }
 #resetListButton{
-    width: 30%;
+    opacity:0;
+    width:100px;
     padding: 3%;
     height: fit-content;
     color: cadetblue;
@@ -96,7 +98,7 @@ div.itemLabels > label.priceItem{
     font-size: 1.2rem;
 }
 #totalPrice{
-    width: 70%;
+    width: 300px;
     padding-right: 10px;
     margin: auto;
     text-align: right;
@@ -107,7 +109,9 @@ div.itemLabels > label.priceItem{
     font-size: 2.5rem;
     font-weight: bold;
     color: rgb(255, 255, 160);
-    -webkit-text-stroke: 2px cadetblue;
+}
+span.valueEur{
+    font-size: 1.2rem;
 }
 #totalPriceText{
     margin-top: 0;
