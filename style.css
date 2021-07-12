@@ -100,17 +100,17 @@ div.itemLabels > label.priceItem{
     padding-right: 10px;
     margin: auto;
     text-align: right;
-    color: cadetblue;
     border-radius: 10px;
 }
 #totalPriceNum{
     margin: 5% 0 1% 0;
     font-size: 2.5rem;
     font-weight: bold;
-    color:rgb(255, 255, 175);
-    text-shadow:0 8px 32px rgba( 31, 38, 135, 0.37 );
+    color: rgb(255, 255, 160);
+    -webkit-text-stroke: 2px cadetblue;
 }
 #totalPriceText{
     margin-top: 0;
     font-size: 1.2rem;
+    color:cadetblue;
 }
