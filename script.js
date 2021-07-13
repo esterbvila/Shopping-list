@@ -2,77 +2,77 @@
 var shoppingList = document.querySelector('ol');
 
 shoppingList.addEventListener('click', function changeStatus(ev) {
-  if (ev.target.tagName === 'LI') {
+    if(ev.target.tagName === 'LI') {
+        //* 1.1 BG COLOR CHANGES
+        ev.target.classList.toggle('checked');
 
-    //* 1.1 BG COLOR CHANGES
-    ev.target.classList.toggle('checked');
+        //* 1.2 ITEM STATUS ICON CHANGES
+        var checked = ev.target.firstElementChild.innerHTML = '<i class="fas fa-check-circle"></i>';
+        checked
 
-    //* 1.2 ITEM STATUS ICON CHANGES
-    var checked = ev.target.firstElementChild.innerHTML = '<i class="fas fa-check-circle"></i>';
-    checked
+        //* 1.3 MOVE ITEM UNDER LIST
+        setTimeout(function(){document.querySelector('ol').appendChild(ev.target)},500);
 
-    //* 1.3 MOVE ITEM UNDER LIST
-    setTimeout(function(){document.querySelector('ol').appendChild(ev.target)},1000);
+        //* 1.4 TOTAL INCREASES
+        var getLastChild = ev.target.lastElementChild;
 
-    //* 1.4 TOTAL INCREASES
-    var getLastChild = ev.target.lastElementChild;
+        var getLastGrandChild = getLastChild.lastElementChild.innerHTML
 
-    var getGrandChild = getLastChild.lastElementChild.innerHTML
+        var getNumOfLGC = parseFloat(getLastGrandChild)
 
-    var price = parseFloat(getGrandChild)
+        var getTotalOfList = parseFloat(document.getElementById('totalPriceNum').innerHTML)
 
-    var totalSenseEur = parseFloat(document.getElementById('totalPriceNum').innerHTML)
+        var updateTotalOfList = getTotalOfList +getNumOfLGC;
 
-    var total = totalSenseEur +price;
+        console.log(updateTotalOfList)
 
-    console.log(total)
+        document.getElementById('totalPriceNum').innerHTML = Math.round((updateTotalOfList + Number.EPSILON) * 100) / 100 + ' EUR'
 
-    document.getElementById('totalPriceNum').innerHTML = Math.round((total + Number.EPSILON) * 100) / 100 + ' EUR'
+    if(ev.target.classList.contains('checked')==false){
+        var unChecked = ev.target.firstElementChild.innerHTML = '<i class="far fa-circle"></i>';
+        unChecked
 
+        setTimeout(function(){document.querySelector('ol').prepend(ev.target)},500);
 
-        if(ev.target.classList.contains('checked')==false){
-            var unChecked = ev.target.firstElementChild.innerHTML = '<i class="far fa-circle"></i>';
-            unChecked
-            setTimeout(function(){document.querySelector('ol').prepend(ev.target)},1000);
+        //* 1.4 TOTAL DECREASE
+        var getLastChild = ev.target.lastElementChild;
 
-            //* 1.4 TOTAL DECREASES
-            var getLastChild = ev.target.lastElementChild;
+        var getLastGrandChild = getLastChild.lastElementChild.innerHTML
 
-            var getGrandChild = getLastChild.lastElementChild.innerHTML
+        var getNumOfLGC = parseFloat(getLastGrandChild)
 
-            var price = parseFloat(getGrandChild)
+        var getTotalOfList = parseFloat(document.getElementById('totalPriceNum').innerHTML)
 
-            var totalSenseEur = parseFloat(document.getElementById('totalPriceNum').innerHTML)
+        var updateTotalOfList = getTotalOfList -getNumOfLGC -getNumOfLGC;
 
-            var total = totalSenseEur -price - price;
+        console.log(updateTotalOfList)
 
-            console.log(total)
+        document.getElementById('totalPriceNum').innerHTML = Math.round((updateTotalOfList + Number.EPSILON) * 100) / 100 + ' EUR'
 
-            document.getElementById('totalPriceNum').innerHTML = Math.round((total + Number.EPSILON) * 100) / 100 + ' EUR'
-
-        }   
-     }  
-  
+    //* 1.5 RESET BUTTON DIS/APPEARS
+    }if(updateTotalOfList == 0){
+        document.getElementById('resetListButton').style.opacity='0';
+    }if(updateTotalOfList !== 0){
+        document.getElementById('resetListButton').style.opacity='1';
+    } 
+}
+     
 });
 
-/*var children = document.querySelector('ol').children;
-console.log(children);
-for(var i = 0; i<children.length;i++){
-    console.log(children[i])
+//· 2 RESET LIST
+var resetListButton = document.getElementById('resetListButton');
 
-    document.getElementById(`${children[i].id}`).addEventListener('click', function(ev) {
-        console.log('hola')
-        ev.target.parentElement.classList.toggle('checked');
-        console.log('adeu')
-}*/
+resetListButton.addEventListener('click', function resetList(ev) {
+    var liS = document.querySelectorAll('li')
+    var liSArr = Array.from(liS);
+    for(var i = 0 ; i < liSArr.length; i++){
+       liSArr[i].classList.remove('checked')
+       liSArr[i].firstElementChild.innerHTML = '<i class="far fa-circle"></i>';
+       document.getElementById('totalPriceNum').innerHTML = 0 + ' EUR'
+       document.getElementById('resetListButton').style.opacity='0';
+    }
+});
 
+//· 3 FILTERED LIST:
 
-//* 1.4 TOTAL INCREASES
-
-
-
-//* 1.5 RESET BUTTON APPEARS
-
-//· 2 FILTERED LIST:
-
-//· 3 CHANGES REMAIN WHEN RELOAD (SESSION STORAGE)
+//· 4 CHANGES REMAIN WHEN RELOAD (SESSION STORAGE)
