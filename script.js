@@ -56,6 +56,7 @@ shoppingList.addEventListener('click', function changeStatus(ev) {
         document.getElementById('resetListButton').style.opacity='1';
     } 
 }
+
      
 });
 
@@ -93,4 +94,5 @@ function filterShoppingList(){
     }
 }
 
-//· 4 CHANGES REMAIN WHEN RELOAD (SESSION STORAGE)
+//· 4 CHANGES REMAIN WHEN RELOAD 
+  
