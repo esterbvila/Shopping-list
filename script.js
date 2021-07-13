@@ -75,4 +75,22 @@ resetListButton.addEventListener('click', function resetList(ev) {
 
 //· 3 FILTERED LIST:
 
+function filterShoppingList(){
+    var input, filter, ol, li, i, id, starts;
+    input = document.getElementById('filterBar')
+    filter = input.value.toUpperCase();
+    ol = document.querySelector('ol');
+    li = ol.getElementsByTagName('li');
+
+    for (i = 0; i < li.length; i++) {
+        id = li[i].id.toUpperCase();
+        starts = id.startsWith(filter);
+        if(starts){
+            li[i].style.display = "";
+        }else{
+            li[i].style.display = "none";
+        }
+    }
+}
+
 //· 4 CHANGES REMAIN WHEN RELOAD (SESSION STORAGE)
