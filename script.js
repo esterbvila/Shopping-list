@@ -12,7 +12,7 @@ shoppingList.addEventListener('click', function changeStatus(ev) {
             }if(symbol == '-'){
                 var setTotal = parseTotal - getPriceItem - getPriceItem
             }
-            document. getElementById('totalPriceNum').innerHTML = Math.round((setTotal + Number.EPSILON) * 100) / 100 + ' EUR'
+            document.getElementById('totalPriceNum').innerHTML = Math.round((setTotal + Number.EPSILON) * 100) / 100 + ' EUR'
             if(setTotal == 0){
                 document.getElementById('resetListButton').style.opacity='0';
             }if(setTotal !== 0){
@@ -74,15 +74,12 @@ if ("DOMContentLoaded") {
     if(bread == 'checked'){
         checkItem('bread');
         increaseTotalOfList('bread');
-    
     }if(milk == 'checked'){
         checkItem('milk');
         increaseTotalOfList('milk');
-
     }if(peaches == 'checked'){
         checkItem('peaches');
         increaseTotalOfList('peaches');
-
     }if(apples == 'checked'){
         checkItem('apples');
         increaseTotalOfList('apples');
