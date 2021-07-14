@@ -1,46 +1,42 @@
-//· 1 ITEM CLICKED:
+//1 WHEN ITEM CLICKED:
 var shoppingList = document.querySelector('ol');
 shoppingList.addEventListener('click', function changeStatus(ev) {
-
-    //* TOTAL INCREASES/DECREASES
-    var getLastChild = ev.target.lastElementChild;
-    var getPriceItem = parseFloat(getLastChild.lastElementChild.innerHTML)
-    var getTotal= document.getElementById('totalPriceNum').innerHTML
-    var parseTotal = parseFloat(getTotal)
-    var setTotal;
-
     if(ev.target.tagName === 'LI') {
-        //* TOTAL INCREASES
-        setTotal = parseTotal +getPriceItem;
-        document.getElementById('totalPriceNum').innerHTML = Math.round((setTotal + Number.EPSILON) * 100) / 100 + ' EUR'
-        //* BG COLOR CHANGES
+        function changeTotalOfList(symbol){
+            var getLastChild = ev.target.lastElementChild;
+            var getPriceItem = parseFloat(getLastChild.lastElementChild.innerHTML)
+            var getTotal= document.getElementById('totalPriceNum').innerHTML
+            var parseTotal = parseFloat(getTotal)
+            if(symbol == '+'){
+                var setTotal = parseTotal + getPriceItem
+            }if(symbol == '-'){
+                var setTotal = parseTotal - getPriceItem - getPriceItem
+            }
+            document. getElementById('totalPriceNum').innerHTML = Math.round((setTotal + Number.EPSILON) * 100) / 100 + ' EUR'
+            if(setTotal == 0){
+                document.getElementById('resetListButton').style.opacity='0';
+            }if(setTotal !== 0){
+                document.getElementById('resetListButton').style.opacity='1';
+            }
+        }
+        changeTotalOfList('+')
         ev.target.classList.toggle('checked');
-        //* ITEM STATUS ICON CHANGES
         ev.target.firstElementChild.innerHTML = '<i class="fas fa-check-circle"></i>';
-        //* MOVE ITEM UNDER LIST
         setTimeout(function(){document.querySelector('ol').appendChild(ev.target)},500);
-
-    if(ev.target.classList.contains('checked')==false){
-        //* TOTAL DECREASES
-        setTotal = parseTotal -getPriceItem;
-        document.getElementById('totalPriceNum').innerHTML = Math.round((setTotal + Number.EPSILON) * 100) / 100 + ' EUR'
-        //* ITEM STATUS ICON CHANGES
-        ev.target.firstElementChild.innerHTML = '<i class="far fa-circle"></i>';
-        //* MOVE ITEM UNDER LIST
-        setTimeout(function(){document.querySelector('ol').prepend(ev.target)},500);
-
-    //* RESET BUTTON DIS/APPEARS
-    }if(setTotal == 0){
-        document.getElementById('resetListButton').style.opacity='0';
-    }if(setTotal !== 0){
-        document.getElementById('resetListButton').style.opacity='1';
-    } 
-}     
+        const key = ev.target.id
+        const value = ev.target.classList.value
+        localStorage.setItem(key,value)
+        if(ev.target.classList.contains('checked') == false){
+            changeTotalOfList('-')
+            ev.target.firstElementChild.innerHTML = '<i class="far fa-circle"></i>';
+            setTimeout(function(){document.querySelector('ol').prepend(ev.target)},500);
+        }
+    }
 });
 
-//· 2 RESET LIST
+//2 RESET LIST
 var resetListButton = document.getElementById('resetListButton')
-resetListButton.addEventListener('click', function resetList(ev) {
+resetListButton.addEventListener('click', function resetList() {
     var liS = document.querySelectorAll('li')
     var liSArr = Array.from(liS);
     for(var i = 0 ; i < liSArr.length; i++){
@@ -51,7 +47,7 @@ resetListButton.addEventListener('click', function resetList(ev) {
     }
 });
 
-//· 3 FILTERED LIST:
+//3 FILTER LIST:
 function filterShoppingList(){
     var input = document.getElementById('filterBar')
     var filter = input.value.toUpperCase();
@@ -69,14 +65,45 @@ function filterShoppingList(){
     }
 }
 
-//· 4 CHANGES REMAIN WHEN RELOAD
+//4 CHANGES REMAIN WHEN RELOAD
+if ("DOMContentLoaded") { 
+    var bread = localStorage.getItem('bread')
+    var milk = localStorage.getItem('milk')
+    var peaches = localStorage.getItem('peaches')
+    var apples = localStorage.getItem('apples')
+    if(bread == 'checked'){
+        checkItem('bread');
+        increaseTotalOfList('bread');
+    
+    }if(milk == 'checked'){
+        checkItem('milk');
+        increaseTotalOfList('milk');
 
-localStorage.setItem("age",50);
-localStorage.setItem("name","Domenic");
+    }if(peaches == 'checked'){
+        checkItem('peaches');
+        increaseTotalOfList('peaches');
 
-/*localStorage.removeItem("name");*/
-console.log(localStorage.key(1))
-
-
-
-
+    }if(apples == 'checked'){
+        checkItem('apples');
+        increaseTotalOfList('apples');
+    }
+}
+function checkItem(item){
+    document.getElementById(item).classList.toggle('checked');
+    document.getElementById(item).firstElementChild.innerHTML = '<i class="fas fa-check-circle"></i>';
+    setTimeout(function(){document.querySelector('ol').appendChild(document.getElementById(item))},500);
+}
+function increaseTotalOfList(item){
+    var getLastChild = document.getElementById(item).lastElementChild;
+    var getPriceItem = parseFloat(getLastChild.lastElementChild.innerHTML)
+    var getTotal= document.getElementById('totalPriceNum').innerHTML
+    var parseTotal = parseFloat(getTotal)
+    var setTotal = parseTotal +getPriceItem;
+    document.getElementById('totalPriceNum').innerHTML = Math.round((setTotal + Number.EPSILON) * 100) / 100 + ' EUR'
+        if(setTotal == 0){
+            document.getElementById('resetListButton').style.opacity='0';
+        }
+        if(setTotal !== 0){
+            document.getElementById('resetListButton').style.opacity='1';
+        }
+}
