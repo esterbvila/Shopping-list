@@ -20,9 +20,11 @@ body{
     transition:2s;
 }
 h1{
-    text-align: center;
+    text-align: left;
+    width:400px;
+    margin:0 auto;
     color: rgb(95, 158, 160);
-    font-size: 3rem;
+    font-size: 2rem;
     font-style: italic;
     font-weight: bold;
 }
@@ -40,7 +42,7 @@ h1{
     -webkit-backdrop-filter: blur( 9.0px );
     border-radius: 10px;
     border: 1px solid rgba( 255, 255, 255, 0.18 );
-    font-size: 1rem;
+    font-size: 1.2rem;
 }
 li{
     list-style: none;
@@ -58,7 +60,6 @@ li{
 li.checked{
     background: rgba(5, 157, 160, 0.5);
 }
-
 p.itemStatus{
     align-self: center;
     margin-right: 7%;
@@ -120,4 +121,20 @@ span.valueEur{
     margin-top: 0;
     font-size: 1.2rem;
     color:cadetblue;
+}
+
+
+@media only screen and (max-width: 420px) {
+h1{
+    width:90%;
+}
+   #shoppingList{
+    width: 90%;
+}
+li{
+    padding:5px 0 5px 25px;
+}
+#totalPriceNum{
+    font-size: 2rem;
+}
 }

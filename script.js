@@ -70,3 +70,13 @@ function filterShoppingList(){
 }
 
 //· 4 CHANGES REMAIN WHEN RELOAD
+
+localStorage.setItem("age",50);
+localStorage.setItem("name","Domenic");
+
+/*localStorage.removeItem("name");*/
+console.log(localStorage.key(1))
+
+
+
+
